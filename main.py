@@ -33,12 +33,17 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     extensions=['jinja2.ext.autoescape'],
     autoescape=True)
 
-# Define a Student model for the Datastore
+# Define a Post model for the Datastore
 class Post(ndb.Model):
     name = ndb.StringProperty(required=True)
     content = ndb.TextProperty(required=True)
     date = ndb.DateTimeProperty(auto_now_add=True)
+    comments = ndb.KeyProperty(kind='Comment', repeated=True)
 
+class Comment(ndb.Model):
+    name = ndb.StringProperty(required=True)
+    comment = ndb.TextProperty(required=True)
+    date = ndb.DateTimeProperty(auto_now_add=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -62,8 +67,31 @@ class MainHandler(webapp2.RequestHandler):
         # Redirect to the main handler that will render the template
         self.redirect('/')
 
+class CommentHandler(webapp2.RequestHandler):
+    def post(self):
+        # Create the comment in the Database
+        name = self.request.get('name')
+        comment = self.request.get('comment')
+        db_comment = Comment(
+            name=name,
+            comment=comment
+        )
+        comment_key = db_comment.put()
+
+        # Find the post that was commented on using the hidden post_url_key
+        post_url_key = self.request.get('post_url_key')
+        post_key = ndb.Key(urlsafe=post_url_key)
+        post = post_key.get()
+
+        # Attach the comment to that post
+        post.comments.append(comment_key)
+        post.put()
+
+        self.redirect('/')
+
 
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/comment', CommentHandler)
 ], debug=True)
