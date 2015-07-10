@@ -66,13 +66,7 @@ class MainHandler(webapp2.RequestHandler):
 class CommentHandler(webapp2.RequestHandler):
     def post(self):
         # Create the comment in the Database
-        name = self.request.get('name')
-        comment = self.request.get('comment')
-        db_comment = Comment(
-            name=name,
-            comment=comment
-        )
-        comment_key = db_comment.put()
+        # !!!! YOUR CODE HERE
 
         # Find the post that was commented on using the hidden post_url_key
         post_url_key = self.request.get('post_url_key')
@@ -80,8 +74,7 @@ class CommentHandler(webapp2.RequestHandler):
         post = post_key.get()
 
         # Attach the comment to that post
-        post.comment_keys.append(comment_key)
-        post.put()
+        # !!!! YOUR CODE HERE
 
         self.redirect('/')
 
