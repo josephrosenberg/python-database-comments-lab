@@ -38,12 +38,8 @@ class Post(ndb.Model):
     name = ndb.StringProperty(required=True)
     content = ndb.TextProperty(required=True)
     date = ndb.DateTimeProperty(auto_now_add=True)
-    comment_keys = ndb.KeyProperty(kind='Comment', repeated=True)
 
 class Comment(ndb.Model):
-    name = ndb.StringProperty(required=True)
-    comment = ndb.TextProperty(required=True)
-    date = ndb.DateTimeProperty(auto_now_add=True)
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):

@@ -9,13 +9,19 @@ This lab will expand your blog capabilities!  After this lab you will be able to
 ## Objectives
 
 + Create a comment database model
-+ Add a list of multiple KeyProperty's to the post model
 + Make a corresponding front end that allows users to create comments
 + Show a list of all posts and their comments
 
 ## Directions
 
-1. In 
+1. Fill in the `Comment(ndb.Model)` with a `StringProperty` for a name, a `TextProperty` for the comment, and a `DateTimeProperty` that automatically records the date the record was created.
+2. Add a `comment_keys` variable to the `Post` model and have it store a repeated list of `KeyProperty`s
+
+2. Fill in the `get()` of `MainHandler` so it queries for all the posts and sends it to the template to render
+  + It might be good to just print the values to the console or send the raw text with `self.response.write` until you flesh out the frontend
+3. Build up the frontend HTML so it can display all the posts.
+4. Add a form to the front end that posts to the `/` root url with a new title and content for a post.
+5. Fill in a `post()` method in `MainHandler` that gets the data from the form, creates a new `Post`, and stores it in the datastore.
 
 ## Stretch
 
