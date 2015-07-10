@@ -38,7 +38,7 @@ class Post(ndb.Model):
     name = ndb.StringProperty(required=True)
     content = ndb.TextProperty(required=True)
     date = ndb.DateTimeProperty(auto_now_add=True)
-    comments = ndb.KeyProperty(kind='Comment', repeated=True)
+    comment_keys = ndb.KeyProperty(kind='Comment', repeated=True)
 
 class Comment(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -84,7 +84,7 @@ class CommentHandler(webapp2.RequestHandler):
         post = post_key.get()
 
         # Attach the comment to that post
-        post.comments.append(comment_key)
+        post.comment_keys.append(comment_key)
         post.put()
 
         self.redirect('/')
