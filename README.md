@@ -18,6 +18,8 @@ This lab will expand your blog capabilities!  After this lab you will be able to
 2. Add a `comment_keys` variable to the `Post` model and have it store a repeated list of `KeyProperty`s
 3. Fill in the `CommentHandler` class so it can handle a `post()` request and will create a new comment and store it in the appropriate Post.
   + We have retrieved the post for you by storing its key in a hidden input field in the front end form
+4. Open `index.html` and fill in the necessary HTML to make a form that posts to `/comment` and sends the commenters name and comment to the back end.
+
 
 2. Fill in the `get()` of `MainHandler` so it queries for all the posts and sends it to the template to render
   + It might be good to just print the values to the console or send the raw text with `self.response.write` until you flesh out the frontend

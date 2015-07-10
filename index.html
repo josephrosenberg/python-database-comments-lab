@@ -4,7 +4,7 @@
   <body>
     <h2>Posts</h2>
     {% for post in posts %}
-      <h3>Title: {{ post.name }}</h3>
+      <h3>Title: {{ post.title }}</h3>
       <h5>{{ post.date.strftime("%d/%m/%y") }}</h5>
       <p>{{ post.content }}</p>
       {% for comment_key in post.comment_keys %}
@@ -12,17 +12,19 @@
         <!-- <h5> comment_key.date.strftime("%d/%m/%y") }}</h5> -->
         <p>{{ comment_key.get().comment }}</p>
       {% endfor %}
-      <form action="/comment" method="post">
-        <div>Name: <input name="name"></input></div>
-        <div>Comment: <textarea name="comment" rows="2" cols="40"></textarea></div>
+      <!-- This form is to create a new comment, it needs to send to '/comment using the post method' -->
+      <form action="" method="">
+        <!-- It needs to take inputs for the commenters name and comment -->
+        
+        <!-- This next line is a sneaky way to make sure we know what post we are talking about -->
         <div><input type="hidden" name="post_url_key" value="{{ post.key.urlsafe() }}">
-        <div><input type="submit" value="Comment"></div>
+        <div><input type="submit" value="Leave Comment"></div>
       </form>
       <hr>
     {% endfor %}
 
     <form action="/" method="post">
-      <div>Name: <input name="name"></input></div>
+      <div>Title: <input name="name"></input></div>
       <div>Content: <textarea name="content" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Add Post"></div>
     </form>
