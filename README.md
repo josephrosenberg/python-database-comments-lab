@@ -20,13 +20,6 @@ This lab will expand your blog capabilities!  After this lab you will be able to
   + We have retrieved the post for you by storing its key in a hidden input field in the front end form
 4. Open `index.html` and fill in the necessary HTML to make a form that posts to `/comment` and sends the commenters name and comment to the back end.
 
-
-2. Fill in the `get()` of `MainHandler` so it queries for all the posts and sends it to the template to render
-  + It might be good to just print the values to the console or send the raw text with `self.response.write` until you flesh out the frontend
-3. Build up the frontend HTML so it can display all the posts.
-4. Add a form to the front end that posts to the `/` root url with a new title and content for a post.
-5. Fill in a `post()` method in `MainHandler` that gets the data from the form, creates a new `Post`, and stores it in the datastore.
-
 ## Stretch
 
 + Make the site look better with CSS and more creative HTML

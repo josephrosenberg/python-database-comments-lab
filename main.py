@@ -40,6 +40,7 @@ class Post(ndb.Model):
     date = ndb.DateTimeProperty(auto_now_add=True)
 
 class Comment(ndb.Model):
+    # Your code goes here
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
